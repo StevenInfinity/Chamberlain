@@ -599,6 +599,63 @@ def members_window():
     #Appending the records in the table
     for row in myresult:
         tree.insert("", END, values = row)
+    
+    #Members treeview double click event
+    def getSelection(event):
+        #Function to update from double click event window
+        def doubleClickUpdate():
+            mem_id = curitem[0]
+            pno = phone_number_var.get()
+            emid = email_var.get()
+            pts = points_var.get()
+            if mem_id and pno and emid != "":
+                sql = "UPDATE members SET phone_no = '%s' where membership_id = %s " % (pno,mem_id)
+                cur.execute(sql)
+                sql = "UPDATE members SET points = %s where membership_id = %s " % (pts,mem_id)
+                cur.execute(sql)
+                sql = "UPDATE members SET email_id = '%s' where membership_id = %s " % (emid,mem_id)
+                cur.execute(sql)
+                db.commit()
+                messagebox.showinfo("Update Member Details","Details of member with membership ID %s was updated" % mem_id ,parent = datawindow)
+            else:
+                messagebox.showerror("Update Member Details", "Phone Number and Email ID are mandatory fields, please fill these fields.")
+        
+        #getSelection(Datawindow) main code
+        currow = tree.focus()
+        curitem = (tree.item(currow))['values']
+        datawindow = Toplevel()
+        datawindow.configure(bg = mem_bg)
+        datawindow.geometry("400x550")
+        datawindow.resizable(0,0)
+        datawindow.title("Member details edit Window")
+        Label(datawindow, text = " ╔══════════╗", bg = mem_bg,font = "Corbel 20 bold", fg = mem_fg, padx = 25).grid(row = 1,pady = 10)
+        Label(datawindow, text = "Member details", bg = mem_bg, fg = mem_fg,font = "Corbel 20 bold", padx = 100).grid(row = 2,sticky = 'news')
+        Label(datawindow, text = " ╚══════════╝\n", bg = mem_bg,font = "Corbel 20 bold", fg = mem_fg).grid(row = 3, sticky = 'news')
+        display_mem = "Membership ID:\t" + str(curitem[0])
+        Label(datawindow, text = display_mem, bg = mem_bg,font = "Consolas 16 bold", fg = mem_fg).grid(row = 4, sticky = 'nws',padx = 10)
+        Label(datawindow, text = "Name of member:\t" + curitem[1] + " " + curitem[2] , bg = mem_bg,font = "Consolas 16 bold", fg = mem_fg).grid(row = 5, sticky = 'nws', padx = 10)
+        Label(datawindow, text = "" , bg = mem_bg,font = "Consolas 16 bold", fg = mem_fg).grid(row = 6, sticky = 'nws', padx = 10)
+    
+        phone_number_var = StringVar()
+        email_var = StringVar()
+        points_var = StringVar()
+        #Label and textboxes
+        Label(datawindow, text = "Phone Number :", bg = mem_bg,font = "Corbel 14 bold", fg = mem_fg).grid(pady = 10,row = 7, sticky = "w",padx = 10)
+        phone_number_entry  =  (Entry(datawindow, width = 20, font = "Consolas 14",textvariable = phone_number_var).grid(pady = 10,row = 7, sticky = "e", padx = 35))
+        phone_number_var.set(curitem[3])
+        Label(datawindow, text = "Email ID :", bg = mem_bg,font = "Corbel 14 bold", fg = mem_fg).grid(pady = 10,row = 8, sticky = "w",padx = 10)
+        email_entry  =  (Entry(datawindow, width = 20, font = "Consolas 14",textvariable = email_var).grid(pady = 10,row = 8, sticky = "e",padx = 35))
+        email_var.set(curitem[4])
+        Label(datawindow, text = "Points :", bg = mem_bg,font = "Corbel 14 bold", fg = mem_fg).grid(pady = 10,row = 9, sticky = "w",padx = 10)
+        points_entry  =  (Entry(datawindow, width = 20, font = "Consolas 14",textvariable = points_var).grid(pady = 10,row = 9, sticky = "e",padx = 35))
+        points_var.set(curitem[5])
+        #Buttons
+        Label(datawindow, text = "", bg = mem_bg,font = "Corbel 14 bold", fg = mem_fg).grid(pady = 10,row = 10, sticky = "w",padx = 10)
+        Button(datawindow, text = "Update", font = "Corbel 10", width = 20,height = 2, bd = 5, command = doubleClickUpdate).grid(padx = 25,pady = 15,row = 11,sticky = "w")
+        Button(datawindow, text = "Close", font = "Corbel 10", width = 20,height = 2, bd = 5, command = datawindow.destroy).grid(padx = 15,pady = 15,row = 11,sticky = "e")
+    #Binding double click event to function
+    tree.bind('<Double-1>', getSelection)
+    
     # Buttons
     Button(members_page, text = "Search Member", width = 20, height = 2,command = display_members_options, bd = 5).pack(side = LEFT,padx = 20,pady = 15)
     Button(members_page, text = "Add Member", width = 20, height = 2,command = add_member, bd = 5).pack(side = LEFT,padx = 10,pady = 15)
