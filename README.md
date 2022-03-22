@@ -28,14 +28,17 @@ Install python 3.x.x from python.org and add it to path.
 Clone the repository from the GitHub repo by entering git clone https://github.com/repo in command prompt (Windows)
 
 Install the required libraries, by the following way:
-Install a specific library (for example tabulate), by entering the following in command prompt (Windows) :  
+Install a specific library (for example tabulate), by entering the following in command prompt (Windows) 
 
 	pip install tabulate 
-
-   
-Finally, execute main.py by either double-clicking on it or by entering the following  in command prompt (Windows), replacing <path> with the actual path to the folder.
 	
-	 python <path>\Chamberlain\\main.py 
+Install all the packages using the requirements.txt file by entering the following in command prompt (Windows), replacing <path> with the actual path to the folder
+
+	pip install -r <path>\requirements.txt
+   
+Finally, execute main.py by either double-clicking on it or by entering the following  in command prompt (Windows), replacing <path> with the actual path to the folder
+	
+	 python <path>\Chamberlain\main.py 
 
 
 	
