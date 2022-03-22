@@ -1217,7 +1217,7 @@ def bills_window():
 # Main Window
 
 main_window  =  Tk()
-main_window.title("Hotel Management System - Main Menu")
+main_window.title("Chamberlain - Main Menu")
 main_window.geometry("400x430")
 main_window.resizable(0, 0)
 main_window.configure(bg = main_bg)
@@ -1279,8 +1279,16 @@ if ('hotel_management_system',) in a:
         messagebox.showerror("Table Error","One or more table(s) are missing from the database. Please run the setup file")
 else:
     #Creates Database and Tables
-    messagebox.showerror("Breakdown","Application did not start as database was not found. Please run the setup file")
-    quit()
+    cur.execute("create database hotel_management_system")
+    db.commit()
+    cur.execute("use hotel_management_system")
+    cur.execute("create table members(membership_id integer(5) Primary Key, First_name varchar(20) not null, Last_name varchar(20) not null, phone_no char(13) not null unique, Email_ID varchar(35) not null, Points integer default 0);")
+    db.commit()
+    cur.execute("create table rooms(Room_no char(3) Primary Key,Fee_per_day integer default 1000,Occupancy enum('Occupied','Vacant'),membership_id integer(5) ,Check_in_date date );")
+    db.commit()
+    cur.execute("CREATE TABLE Bills(Bill_no integer(5) ZEROFILL, Room_no char(3), Mem_ID integer(5),Days integer, Amount integer, PRIMARY KEY (Bill_no), FOREIGN KEY (Room_no) REFERENCES Rooms(Room_no), FOREIGN KEY (Mem_ID) REFERENCES Members(Membership_ID));")
+    db.commit()
+    messagebox.showinfo("Database Connection","New database was created and is ready to use")
     
 
 #MAIN  
