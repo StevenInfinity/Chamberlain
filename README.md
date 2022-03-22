@@ -33,7 +33,9 @@ Install a specific library (for example tabulate), by entering the following in 
 	pip install tabulate 
 
    
-Finally, execute main.py by either double-clicking on it or by entering python <path>\\Chamberlain\\main.py in command prompt (Windows), replacing <path> with the actual path to the folder.
+Finally, execute main.py by either double-clicking on it or by entering the following  in command prompt (Windows), replacing <path> with the actual path to the folder.
+	
+	 python <path>\Chamberlain\\main.py 
 
 
 	
