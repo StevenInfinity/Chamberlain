@@ -1,20 +1,20 @@
 # Chamberlain
-An easy to use hotel management system with minimal yet all essential fields of data required for manage the members, rooms, bills data.
+An easy to use hotel management system with minimal yet all essential fields of data required for managing members, rooms, bills data.
 
 
 ## Platforms supported
 
     - Windows 10 and above
-	*Application has been tested on other platforms
+	*Application has not been tested on other platforms
 	
 
-## Software Requirements
+## Software requirements
 
-    - python 3.x.x
-    - MySQL 5 and above
+    - python 3.5.x or above
+    - MySQL 5 or above
 	
 	
-## Library Requirements
+## Python library requirements
 
 	- mysql.connector
 	- tkinter
@@ -23,7 +23,7 @@ An easy to use hotel management system with minimal yet all essential fields of 
 
 ## Install and run the app
 
-Install python 3.x.x from python.org and adding it to path.
+Install python 3.x.x from python.org and add it to path.
 
 Clone the repository from the GitHub repo by entering git clone https://github.com/repo in command prompt (Windows)
 
@@ -36,9 +36,9 @@ Install the required libraries, by the following way:
 Finally, execute main.py by either double-clicking on it or by entering python <path>\\Chamberlain\\main.py in command prompt (Windows), replacing <path> with the actual path to the folder.
 
 
-## Instructions to use the application
 
-Sample database can be created by running the database setup file else a fresh database can be created based on the user requirements but with same structure.
+
+
 	
 ## Features
 - [ ] Add member
