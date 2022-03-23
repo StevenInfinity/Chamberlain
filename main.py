@@ -1222,7 +1222,7 @@ main_window.geometry("400x430")
 main_window.resizable(0, 0)
 main_window.configure(bg = main_bg)
 # HEADING
-Label(main_window, text = "   Hotel Management System", bg = main_bg,fg = main_fg, font = "HPSimplifiedReg 20 bold", pady = 25).grid(row = 1)
+Label(main_window, text = "Chamberlain", bg = main_bg,fg = main_fg, font = "HPSimplifiedReg 20 bold", pady = 25).grid(row = 1)
 Label(main_window, text = "   »»—————　★　—————«« ", bg = main_bg,fg = main_fg, font = "Corbel 20 bold").grid(row = 2)
 # Members list button
 Label(main_window, text = "", bg = main_bg).grid(row = 3)
